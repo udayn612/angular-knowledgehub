@@ -16,7 +16,7 @@ export class UploadService {
  
     formdata.append('file', file);
 
-    this._url="http://localhost:8087/files/"
+    this._url="http://13.234.94.132:8087/files/"
     
  
     return this.http.post(this._url,formdata,{responseType: 'blob' as 'json' })
@@ -24,7 +24,7 @@ export class UploadService {
   }
  
   getFiles():Observable<any> {
-    this._url="http://localhost:8080/getallfiles/"
+    this._url="http://13.234.94.132:8080/getallfiles/"
     return this.http.get(this._url);
   }
 }
