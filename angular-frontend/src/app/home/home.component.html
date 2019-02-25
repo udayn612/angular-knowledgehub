@@ -1,0 +1,15 @@
+<!-- Navigation bar for the home page -->
+<mat-toolbar color="primary">
+    <a href="#"><span><img src="assets/img/logo.jpg" alt="logo" id="logo"></span></a>
+    <a href="#" id="title">Knowledge Hub</a>
+    <button mat-raised-button color="accent" id="loginbutton" (click)="logging()">{{Islogged}}</button>
+</mat-toolbar>
+<div class="dragDrop" *ngIf="this.token.getToken()">
+  <div class="dragDropColour" >
+    <app-upload></app-upload>
+  </div>
+</div>
+<form class="form-inline">
+  <app-searchbutton></app-searchbutton>
+</form>
+<app-footer></app-footer>
