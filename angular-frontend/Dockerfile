@@ -4,9 +4,10 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
 RUN npm install ngx-file-drop
+RUN npm install angular-bootstrap-md --save
 COPY . .
-# RUN npm run build
+RUN npm run build
 # Stage 2
 FROM node
 RUN npm install http-server -g
-CMD ["http-server","-p","8081", "dist/Knowledgehub"]
+CMD ["http-server","-p","8079", "dist/Knowledgehub"]

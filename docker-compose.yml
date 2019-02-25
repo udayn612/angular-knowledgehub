@@ -1,27 +1,27 @@
 version: "2"
 services:
 
-#  apigateway:
-#    image: zuul-service
-#    build: zuul-gatewayservice/
-#    restart: always
-#    network_mode: host
-#    depends_on:
-#    - eurekaserver
-#    ports:
-#    - 8092:8092
-#    expose:
-#    - 8092
-#
-#  eurekaserver:
-#    image: eureka-servcie:latest
-#    build: eureka-server/
-#    restart: always
-#    network_mode: host
-#    ports:
-#    - 9091:9091
-#    expose:
-#    - 9091
+  apigateway:
+    image: zuul-service
+    build: zuul-gatewayservice/
+    restart: always
+    network_mode: host
+    depends_on:
+    - eurekaserver
+    ports:
+    - 8092:8092
+    expose:
+    - 8092
+
+  eurekaserver:
+    image: eureka-servcie:latest
+    build: eureka-server/
+    restart: always
+    network_mode: host
+    ports:
+    - 9091:9091
+    expose:
+    - 9091
 
 #  configserver:
 #      image: config-servcie:latest
@@ -33,21 +33,21 @@ services:
 #      expose:
 #      - 8888
 
-#  mysqldb:
-#    image: mysql:5.7
-#    restart: always
-#    container_name: mysql-container
-#    network_mode: "host"
-#    hostname: localhost
-#    environment:
-#      MYSQL_ROOT_PASSWORD: root123
-#      MYSQL_DATABASE: LoginDB
-##      MYSQL_USER: root
-#      MYSQL_PASSWORD: root123
-##    volumes:
-##      - /DB/mysql:/var/lib/mysql
-#    ports:
-#      - 3306:3306
+  mysqldb:
+    image: mysql:5.7
+    restart: always
+    container_name: mysql-container
+    network_mode: "host"
+    hostname: localhost
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: LoginDB
+  #    MYSQL_USER: root
+      MYSQL_PASSWORD: root123
+  #  volumes:
+  #    - /DB/mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
 
   neo4j:
     image: neo4j:3.0
@@ -61,32 +61,32 @@ services:
       - $PWD/plugins:/plugins
       - $PWD/import:/import
 
-#  loginservice:
-#    image: login-service:latest
-#    build: login-service/
-#    restart: always
-#    network_mode: "host"
-#    hostname: localhost
-#    depends_on:
-#      - mysqldb
-#      - eurekaserver
-#    ports:
-#    - 8083:8083
-#    expose:
-#    - 8083
+  loginservice:
+    image: login-service:latest
+    build: login-service/
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    depends_on:
+      - mysqldb
+      - eurekaserver
+    ports:
+    - 8084:8084
+    expose:
+    - 8084
 
-#  angular-app:
-#    build: angular/
-#    image: angular
-#    restart: always
-#    mem_limit: 1024m
-#    container_name: Angular
-#    network_mode: "host"
-#    hostname: localhost
-#    ports:
-#      - 8081:8081
-#    expose:
-#      - 8081
+  angular-app:
+    build: angular-frontend/
+    image: angular-frontend
+    restart: always
+    mem_limit: 1024m
+    container_name: Angular
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8079:8079
+    expose:
+      - 8079
 
   zookeeper:
     image: landoop/fast-data-dev
@@ -135,10 +135,11 @@ services:
     depends_on:
       - zookeeper
       - kafka
+      - angular-app
     ports:
-      - 8083:8083
+      - 8087:8087
     expose:
-      - 8083
+      - 8087
 
   content-extractor:
     image: content-extractor:latest

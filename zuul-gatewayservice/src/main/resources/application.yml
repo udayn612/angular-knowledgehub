@@ -9,6 +9,14 @@ spring:
 zuul:
     routes:
         login-service:
-            url: http://localhost:8083
+            url: http://localhost:8084
     sensitiveHeaders:
-
+eureka:
+    instance:
+        leaseRenewalIntervalInSeconds: 1
+        leaseExpirationDurationInSeconds: 2
+    client:
+        serviceUrl:
+            defaultZone: http://127.0.0.1:9091/eureka/
+        lease:
+            duration: 5
