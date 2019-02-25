@@ -19,9 +19,9 @@ services:
     restart: always
     network_mode: host
     ports:
-    - 8051:8051
+    - 9091:9901
     expose:
-    - 8051
+    - 9901
 
 #  configserver:
 #      image: config-servcie:latest
